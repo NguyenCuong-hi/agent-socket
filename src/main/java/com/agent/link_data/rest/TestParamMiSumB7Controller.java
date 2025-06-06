@@ -4,6 +4,7 @@ import com.agent.link_data.dto.request.TestParamMiSumB7SearchDto;
 import com.agent.link_data.dto.response.TestParamMiSumB7Res;
 import com.agent.link_data.service.TestParamMiSumB7Service;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class TestParamMiSumB7Controller {
 
 
     @GetMapping({"/page"})
-    public List<TestParamMiSumB7Res> searchBy(TestParamMiSumB7SearchDto searchDto) {
+    public Page<TestParamMiSumB7Res> searchBy(TestParamMiSumB7SearchDto searchDto) {
         return testParamMiSumB7Service.searchBy(searchDto);
     }
 

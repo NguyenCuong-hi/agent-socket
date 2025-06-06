@@ -6,6 +6,10 @@ import com.agent.link_data.entity.TestParamMiSumB7;
 import com.agent.link_data.repository.TestParamMiSumB7Repository;
 import com.agent.link_data.service.TestParamMiSumB7Service;
 import com.agent.link_data.service.mapper.TestParamMiSumB7Mapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,11 +27,12 @@ public class TestParamMiSumB7ServiceImpl implements TestParamMiSumB7Service {
     }
 
     @Override
-    public List<TestParamMiSumB7Res> searchBy(TestParamMiSumB7SearchDto searchDto) {
-        List<TestParamMiSumB7> entityList = testParamMiSumB7Repo.findByJudgment(searchDto.getTotalJudgement());
+    public Page<TestParamMiSumB7Res> searchBy(TestParamMiSumB7SearchDto searchDto) {
+        Pageable pageable = PageRequest.of(searchDto.getPageIndex(), searchDto.getPageSize());
 
-        return entityList.stream()
-                .map(this.testParamMiSumB7Mapper:: entityToResponse).collect(Collectors.toList());
+        Page<TestParamMiSumB7> entityPage = testParamMiSumB7Repo.findByJudgment(searchDto.getTotalJudgement(), pageable);
+
+        return entityPage.map(testParamMiSumB7Mapper::entityToResponse);
 
     }
 }

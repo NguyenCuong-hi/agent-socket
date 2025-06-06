@@ -84,12 +84,12 @@ let stompClient = null;
       const row = document.createElement("div");
       row.className = "log-row";
       row.innerHTML = `
-        <div class="log-col wide">${data.local}</div>
+        <div class="log-col wide">${new Date().toLocaleString()}</div>
         <div class="log-col">${data.direction}</div>
         <div class="log-col wide">${data.remote}</div>
         <div class="log-col">${data.size}</div>
         <div class="log-col">${data.priority}</div>
-        <div class="log-col">${new Date().toLocaleString()}</div>
+
       `;
       logBoxTable.appendChild(row);
     }
@@ -140,3 +140,27 @@ let stompClient = null;
         });
       };
     }
+
+
+    function closeModal() {
+        document.getElementById("addModal").style.display = "none";
+      }
+
+      document.getElementById("addForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // Ngăn submit form mặc định
+
+        const host = e.target.host.value;
+        const username = e.target.username.value;
+        const password = e.target.password.value;
+        const port = e.target.port.value;
+
+        const table = document.getElementById("dataTable").querySelector("tbody");
+        const row = table.insertRow();
+
+        row.insertCell(0).innerText = host;
+        row.insertCell(1).innerText = username;
+        row.insertCell(2).innerText = '••••••'; // Ẩn password
+        row.insertCell(3).innerText = port;
+
+        e.target.reset(); // Reset form sau khi thêm
+      });

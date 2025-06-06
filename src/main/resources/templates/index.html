@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Quản lý</title>
+  <title>Agent Link Data</title>
   <link rel="stylesheet" th:href="@{/css/styles.css}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -32,34 +32,70 @@
   <div class="log-header">Transfer Log</div>
   <div class="log-box-table" id="logBoxTable">
     <div class="log-row log-header-row">
-      <div class="log-col wide">Server/Local file</div>
+      <div class="log-col wide">Time</div>
       <div class="log-col">Direction</div>
       <div class="log-col wide">Remote file</div>
       <div class="log-col">Size</div>
       <div class="log-col">Priority</div>
-      <div class="log-col">Time</div>
     </div>
 
   </div>
 </div>
 
-<!-- Modal thêm mới -->
 <div id="addModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h2>Thêm thông tin</h2>
+    <span class="close" onclick="closeModal()">x</span>
+    <h2>Setting</h2>
+
     <form id="addForm">
-      <label>Họ tên:</label><br>
-      <input type="text" name="name" required><br><br>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Host</label>
+          <input type="text" name="host" required>
+        </div>
 
-      <label>Email:</label><br>
-      <input type="email" name="email" required><br><br>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" name="username" required>
+        </div>
 
-      <label>Tuổi:</label><br>
-      <input type="number" name="age" required><br><br>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" required>
+        </div>
 
-      <button type="submit">Lưu</button>
+        <div class="form-group">
+          <label>Port</label>
+          <input type="number" name="port" required>
+        </div>
+
+        <div class="form-group">
+          <label>&nbsp;</label>
+          <button type="submit">Save</button>
+        </div>
+      </div>
+
     </form>
+
+    <table id="dataTable">
+      <thead>
+      <tr>
+        <th>Host</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Port</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>192.168.1.1</td>
+        <td>admin</td>
+        <td>••••••</td>
+        <td>21</td>
+      </tr>
+
+      </tbody>
+    </table>
   </div>
 </div>
 
